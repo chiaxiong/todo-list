@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-export default function ToDoForm({ onSubmit }) {
-  const [input, setInput] = useState("");
+export default function ToDoForm({ onSubmit, edit }) {
+  const [input, setInput] = useState(edit ? edit : "");
 
   const handleInput = e => {
     e.preventDefault();
@@ -17,9 +17,25 @@ export default function ToDoForm({ onSubmit }) {
   return (
     <div>
       <form onSubmit={onSubmitForm}>
-        <label>task</label>
-        <input onChange={handleInput} value={input} />
-        <button type="submit">add</button>
+        {edit ? (
+          <>
+            <input
+              onChange={handleInput}
+              value={input}
+              placeholder="update task"
+            />
+            <button type="submit">update</button>
+          </>
+        ) : (
+          <>
+            <input
+              onChange={handleInput}
+              value={input}
+              placeholder="add task"
+            />
+            <button type="submit">add</button>
+          </>
+        )}
       </form>
     </div>
   );
