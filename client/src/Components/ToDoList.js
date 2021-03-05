@@ -11,8 +11,18 @@ export default function ToDoList() {
   const addTodo = async value => {
     try {
       await axios.post(baseURL, {
-        title: value.title,
+        title: value,
       });
+      setReload(!reload);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const removeTodo = async todoId => {
+    try {
+      await axios.delete(baseURL + todoId);
+      setReload(!reload);
     } catch (error) {
       console.log(error);
     }
@@ -29,7 +39,7 @@ export default function ToDoList() {
   return (
     <div>
       <ToDoForm onSubmit={addTodo} />
-      <ToDo todos={todo} />
+      <ToDo todos={todo} deleteTodo={removeTodo} />
     </div>
   );
 }

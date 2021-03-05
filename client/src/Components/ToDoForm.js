@@ -19,7 +19,7 @@ export default function ToDoForm({ onSubmit }) {
       <form onSubmit={onSubmitForm}>
         <label>task</label>
         <input onChange={handleInput} value={input} />
-        <button>add</button>
+        <button type="submit">add</button>
       </form>
     </div>
   );
